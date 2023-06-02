@@ -1,0 +1,33 @@
+- name: FortiFlex Programs, Configs and VMs
+  hosts: localhost
+  collections:
+    - fortinet.fortiflexvm
+
+  tasks:
+    - name: get programs_list_info
+      fortiflexvm_programs_list_info:
+      register: programs_list_info
+
+    - name: display programs_list_info
+      debug:
+        var: programs_list_info.programs
+
+    - name: get configs_list_info
+      fortiflexvm_configs_list_info:
+        programSerialNumber: "{{ item.serialNumber }}"
+      register: configs_list
+      loop: "{{ programs_list_info.programs }}"
+
+    - name: display configs_list_info
+      debug:
+        var: configs_list
+
+    - name: get vms_list_info
+      fortiflexvm_vms_list_info:
+        configId: "{{ item.id }}"
+      register: vms_list
+      loop: "{{ configs_list.results | map(attribute='configs') | flatten }}"
+
+    - name: display vms_list_info
+      debug:
+        var: vms_list
