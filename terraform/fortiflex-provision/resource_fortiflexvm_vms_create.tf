@@ -4,3 +4,7 @@ resource "fortiflexvm_vms_create" "vms_create" {
   folder_path = local.folder_path
   vm_count    = local.vm_count
 }
+
+output "vms_create" {
+  value = fortiflexvm_vms_create.vms_create
+}

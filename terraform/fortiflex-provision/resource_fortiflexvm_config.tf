@@ -7,3 +7,7 @@ resource "fortiflexvm_config" "config" {
     service_pkg = local.service_pkg
   }
 }
+
+output "config" {
+  value = fortiflexvm_config.config
+}
