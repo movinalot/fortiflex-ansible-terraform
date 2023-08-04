@@ -22,8 +22,8 @@
       debug:
         var: configs_list
 
-    - name: get vms_list_info
-      fortiflexvm_vms_list_info:
+    - name: get entitlements_list_info
+      fortiflexvm_entitlements_list_info:
         configId: "{{ item.id }}"
       register: vms_list
       loop: "{{ configs_list.results | map(attribute='configs') | flatten }}"
