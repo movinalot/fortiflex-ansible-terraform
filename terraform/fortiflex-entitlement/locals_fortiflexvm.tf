@@ -6,9 +6,9 @@ locals {
   fortiflex_config_name = var.fortiflex_config_name
 
   # fortiflexvm_entitlements_vm
-  # end_date = "2023-11-12T00:00:00" # Optional, defaults to program end date.
-  # folder_path = "My Assets"        # Optional. defaults to "My Assets"
-  # status = "ACTIVE"                # Optional. "ACTIVE" or "STOPPED". Not recommended to set it manually.
+  # end_date    = "2023-11-12T00:00:00" # Optional, defaults to program end date.
+  # folder_path = "My Assets"           # Optional, defaults to "My Assets"
+  # status      = "ACTIVE"              # Optional, "ACTIVE" or "STOPPED". Not recommended to set it manually.
 
   entitlements_vms = {
     entitlements_vm_1 = {
@@ -21,8 +21,8 @@ locals {
   fortiflex_configs_map = {
     for item in data.fortiflexvm_configs_list.configs_list.configs :
     format("%s", item["name"]) => {
-      name            = item["name"],
-      id =  item["id"]
+      name = item["name"],
+      id   = item["id"]
     }
   }
 }
